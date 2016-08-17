@@ -24,8 +24,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String name = MainActivity.class.getName();
-
         // One Time Set up!
         ViewObjectMapper.mapperIdClass(R.id.class);
 

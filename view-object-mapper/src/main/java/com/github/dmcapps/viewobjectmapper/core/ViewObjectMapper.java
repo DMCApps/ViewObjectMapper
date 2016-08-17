@@ -27,7 +27,7 @@ public final class ViewObjectMapper {
 
     public static void mapObjectToView(Object object, View view) {
         Class<?> clazz = object.getClass();
-        while (clazz != null) {
+        while (clazz != null && !clazz.getName().startsWith("android")) {
             final Field[] fields = clazz.getDeclaredFields();
             for (Field field : fields) {
                 if (field.isAnnotationPresent(ViewId.class)) {

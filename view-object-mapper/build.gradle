@@ -13,7 +13,7 @@ ext {
     siteUrl = 'https://github.com/DMCApps/ViewObjectMapper'
     gitUrl = 'https://github.com/DMCApps/ViewObjectMapper.git'
 
-    libraryVersion = '0.3.1'
+    libraryVersion = '0.0.1'
 
     developerId = 'dmcapps'
     developerName = 'Daniel Carmo'
