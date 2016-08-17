@@ -14,15 +14,15 @@ import com.github.dmcapps.viewobjectmapperexample.R;
 
 public class BasicMappingExample extends AppCompatActivity {
 
-    @ViewId("test_text_view")
+    @ViewId(R.id.test_text_view)
     private TextView mTextView;
-    @ViewId("test_edit_text")
+    @ViewId(R.id.test_edit_text)
     private EditText mEditText;
-    @ViewId("test_radio_group")
+    @ViewId(R.id.test_radio_group)
     private RadioGroup mRadioGroup;
-    @ViewId("test_radio_button_1")
+    @ViewId(R.id.test_radio_button_1)
     private RadioButton mRadioButton1;
-    @ViewId("test_radio_button_2")
+    @ViewId(R.id.test_radio_button_2)
     private RadioButton mRadioButton2;
 
     @Override

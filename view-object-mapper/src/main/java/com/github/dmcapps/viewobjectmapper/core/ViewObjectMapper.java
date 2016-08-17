@@ -11,20 +11,6 @@ import java.lang.reflect.Field;
  */
 public final class ViewObjectMapper {
 
-    private static Class<?> mIdClass;
-
-    /***
-     * One time set up so that we have access to your local projects generated R.id class.
-     * The idClass is the R.id.class so that we have an instance of your local generated
-     * class to look for the id in.
-     *
-     * @param
-     *      idClass -> The R.id.class for your local project.
-     */
-    public static void mapperIdClass(Class<?> idClass) {
-        mIdClass = idClass;
-    }
-
     public static void mapObjectToView(Object object, View view) {
         Class<?> clazz = object.getClass();
         while (clazz != null && !clazz.getName().startsWith("android")) {
@@ -32,8 +18,7 @@ public final class ViewObjectMapper {
             for (Field field : fields) {
                 if (field.isAnnotationPresent(ViewId.class)) {
                     final ViewId annotation = field.getAnnotation(ViewId.class);
-                    String viewId = annotation.value();
-                    int resId = ResourceUtil.getResId(viewId, mIdClass);
+                    int resId = annotation.value();
 
                     View foundView = view.findViewById(resId);
 

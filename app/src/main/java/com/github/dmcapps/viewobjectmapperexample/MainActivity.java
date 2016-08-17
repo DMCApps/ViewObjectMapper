@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.github.dmcapps.viewobjectmapper.core.ViewId;
 import com.github.dmcapps.viewobjectmapper.core.ViewObjectMapper;
 import com.github.dmcapps.viewobjectmapperexample.examples.BasicMappingExample;
 import com.github.dmcapps.viewobjectmapperexample.examples.ObjectMappingExample;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
+    @ViewId(android.R.id.list)
     ListView mList;
 
     @Override
@@ -24,10 +26,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // One Time Set up!
-        ViewObjectMapper.mapperIdClass(R.id.class);
-
-        mList = (ListView) findViewById(android.R.id.list);
+        final ViewGroup viewGroup = (ViewGroup) ((ViewGroup) findViewById(android.R.id.content)).getChildAt(0);
+        ViewObjectMapper.mapObjectToView(this, viewGroup);
 
         ArrayList<String> items = new ArrayList<>();
         items.add("Basic Mapping Example");
