@@ -1,14 +1,38 @@
 apply plugin: 'com.android.library'
 
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'view-object-mapper'
+
+    publishedGroupId = 'com.github.dmcapps'
+    libraryName = 'View Object Mapper'
+    artifact = 'view-object-mapper'
+
+    libraryDescription = 'TODO: Add this'
+
+    siteUrl = 'https://github.com/DMCApps/ViewObjectMapper'
+    gitUrl = 'https://github.com/DMCApps/ViewObjectMapper.git'
+
+    libraryVersion = '0.3.1'
+
+    developerId = 'dmcapps'
+    developerName = 'Daniel Carmo'
+    developerEmail = 'dcarmo@alumni.uoguelph.ca'
+
+    licenseName = 'MIT'
+    licenseUrl = 'https://opensource.org/licenses/MIT'
+    allLicenses = ["MIT"]
+}
+
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.1"
 
     defaultConfig {
-        minSdkVersion 19
+        minSdkVersion 14
         targetSdkVersion 24
         versionCode 1
-        versionName "1.0"
+        versionName "0.0.1"
     }
     buildTypes {
         release {

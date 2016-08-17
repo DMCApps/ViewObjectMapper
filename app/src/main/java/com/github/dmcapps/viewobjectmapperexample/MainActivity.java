@@ -11,6 +11,7 @@ import android.widget.ListView;
 
 import com.github.dmcapps.viewobjectmapper.core.ViewObjectMapper;
 import com.github.dmcapps.viewobjectmapperexample.examples.BasicMappingExample;
+import com.github.dmcapps.viewobjectmapperexample.examples.ObjectMappingExample;
 
 import java.util.ArrayList;
 
@@ -23,6 +24,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        String name = MainActivity.class.getName();
+
         // One Time Set up!
         ViewObjectMapper.mapperIdClass(R.id.class);
 
@@ -31,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         ArrayList<String> items = new ArrayList<>();
         items.add("Basic Mapping Example");
         items.add("Custom Object Mapping Example");
-        items.add("Custom View Mapping Example");
+        // items.add("Custom View Mapping Example");
 
         mList.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, items));
         mList.setOnItemClickListener(this);
@@ -45,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         if (position == 0) {
             intent = new Intent(this, BasicMappingExample.class);
         } else if (position == 1) {
-            intent = new Intent(this, BasicMappingExample.class);
+            intent = new Intent(this, ObjectMappingExample.class);
         } else if (position == 2) {
             intent = new Intent(this, BasicMappingExample.class);
         }

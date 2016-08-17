@@ -19,7 +19,7 @@ public class ObjectMappingExample extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_basic_mapping_example);
+        setContentView(R.layout.activity_object_mapping_example);
 
         final ViewGroup viewGroup = (ViewGroup) ((ViewGroup) findViewById(android.R.id.content)).getChildAt(0);
         ViewObjectMapper.mapObjectToView(mViewHolder, viewGroup);
