@@ -1,9 +1,8 @@
-package com.github.dmcapps.viewobjectmapperexample.examples.annotation;
+package com.github.dmcapps.viewobjectmapperexample.examples.resIdMap;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.ViewGroup;
 
 import com.github.dmcapps.viewobjectmapper.core.ViewObjectMapper;
 import com.github.dmcapps.viewobjectmapperexample.R;
@@ -20,10 +19,6 @@ public class ObjectMappingExample extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_object_mapping_example);
 
-        Date startTime = new Date();
-        ViewObjectMapper.mapObjectToView(mViewHolder, findViewById(R.id.container));
-        Date endTime = new Date();
-
-        Log.d(TAG, String.format("Time to Map: %d", (endTime.getTime() - startTime.getTime())));
+        ViewObjectMapper.mapObjectToView(mViewHolder, findViewById(R.id.automap_container));
     }
 }

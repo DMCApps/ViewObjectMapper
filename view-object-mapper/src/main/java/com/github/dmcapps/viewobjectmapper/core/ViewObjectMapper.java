@@ -8,6 +8,7 @@ import com.github.dmcapps.viewobjectmapper.utils.ResourceUtil;
 import com.google.common.base.CaseFormat;
 
 import java.lang.reflect.Field;
+import java.util.Locale;
 
 /**
  * Created by DCarmo on 16-08-17.
@@ -51,20 +52,22 @@ public final class ViewObjectMapper {
                 throw new RuntimeException("In order to use the mapObjectToView(Object, View) auto mapping feature you MUST class setUpResourceIdClass to give us your R.id.class!");
             }
 
-            resId = resIdFromField(field);
+            resId = resIdFromField(annotation.resIdPrefix(), field);
         }
 
         setViewWithResIdToObjectField(mainView, resId, object, field);
-
     }
 
-    private static int resIdFromField(Field field) {
+    private static int resIdFromField(String resIdPrefix, Field field) {
         String fieldName = field.getName();
         String searchResName = CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, fieldName);
         // Check if the field name starts with m and trim it
         if (searchResName.startsWith("m_")) {
             searchResName = searchResName.substring(2);
         }
+
+        searchResName = String.format(Locale.ENGLISH, "%s%s", resIdPrefix, searchResName);
+
         int resId = ResourceUtil.getResId(searchResName, mResIdClass);
 
         if (resId == Integer.MIN_VALUE) {

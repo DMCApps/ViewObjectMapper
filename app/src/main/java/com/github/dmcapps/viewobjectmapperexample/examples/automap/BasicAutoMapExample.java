@@ -1,4 +1,4 @@
-package com.github.dmcapps.viewobjectmapperexample.examples.automapping;
+package com.github.dmcapps.viewobjectmapperexample.examples.automap;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -39,10 +39,6 @@ public class BasicAutoMapExample extends AppCompatActivity {
         setContentView(R.layout.activity_basic_auto_map_example);
 
         ViewObjectMapper.setUpResourceIdClass(R.id.class);
-        Date startTime = new Date();
-        ViewObjectMapper.mapObjectToView(this, findViewById(R.id.container));
-        Date endTime = new Date();
-
-        Log.d(TAG, String.format("Time to Map: %d", (endTime.getTime() - startTime.getTime())));
+        ViewObjectMapper.mapObjectToView(this, findViewById(R.id.automap_container));
     }
 }

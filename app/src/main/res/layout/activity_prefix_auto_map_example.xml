@@ -10,32 +10,32 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context=".examples.automap.BasicAutoMapExample">
+    tools:context=".examples.automap.PrefixAutoMapExample">
 
     <TextView
-        android:id="@+id/text_view"
+        android:id="@+id/prefix_example_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Text View Example" />
 
     <EditText
-        android:id="@+id/edit_text"
+        android:id="@+id/prefix_example_edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <RadioGroup
-        android:id="@+id/radio_group"
+        android:id="@+id/prefix_example_radio_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <RadioButton
-            android:id="@+id/radio_button1"
+            android:id="@+id/prefix_example_radio_button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Radio 1" />
 
         <RadioButton
-            android:id="@+id/radio_button2"
+            android:id="@+id/prefix_example_radio_button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Radio 2" />

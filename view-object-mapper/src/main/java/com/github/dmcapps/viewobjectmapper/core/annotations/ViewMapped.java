@@ -13,4 +13,5 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 public @interface ViewMapped {
     int value() default Integer.MIN_VALUE;
+    String resIdPrefix() default "";
 }
