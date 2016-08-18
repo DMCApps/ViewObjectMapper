@@ -14,6 +14,8 @@ import com.github.dmcapps.viewobjectmapperexample.R;
 
 import java.util.Date;
 
+// TODO: Runtime check layout for mappings
+// TODO: Add prefix to annotation to have a custom prefix on all values
 public class BasicAutoMapExample extends AppCompatActivity {
     private static final String TAG = BasicAutoMapExample.class.getSimpleName();
 
