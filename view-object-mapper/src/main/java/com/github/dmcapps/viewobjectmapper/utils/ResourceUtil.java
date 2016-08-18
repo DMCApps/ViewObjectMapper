@@ -15,14 +15,13 @@ public class ResourceUtil {
      * @param
      * 		resClass -> resource class to look for the id in. (ie R.drawable.class, R.string.class, etc.)
      * @return
-     * 		The resource Id or -1 if not found
+     * 		The resource Id or {@link Integer#MIN_VALUE} if not found
      */
     public static int getResId(String resName, Class<?> resClass) {
         try {
             Field idField = resClass.getDeclaredField(resName);
             return idField.getInt(idField);
         } catch (Exception e) {
-            e.printStackTrace();
             return Integer.MIN_VALUE;
         }
     }

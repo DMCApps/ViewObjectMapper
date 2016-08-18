@@ -1,4 +1,4 @@
-package com.github.dmcapps.viewobjectmapperexample.examples;
+package com.github.dmcapps.viewobjectmapperexample.examples.annotation;
 
 import android.widget.EditText;
 import android.widget.RadioButton;

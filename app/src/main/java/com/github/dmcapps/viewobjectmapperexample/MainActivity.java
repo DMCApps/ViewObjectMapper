@@ -11,8 +11,9 @@ import android.widget.ListView;
 
 import com.github.dmcapps.viewobjectmapper.core.ViewId;
 import com.github.dmcapps.viewobjectmapper.core.ViewObjectMapper;
-import com.github.dmcapps.viewobjectmapperexample.examples.BasicMappingExample;
-import com.github.dmcapps.viewobjectmapperexample.examples.ObjectMappingExample;
+import com.github.dmcapps.viewobjectmapperexample.examples.annotation.BasicMappingExample;
+import com.github.dmcapps.viewobjectmapperexample.examples.annotation.ObjectMappingExample;
+import com.github.dmcapps.viewobjectmapperexample.examples.automapping.BasicAutoMapExample;
 
 import java.util.ArrayList;
 
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         ArrayList<String> items = new ArrayList<>();
         items.add("Basic Mapping Example");
         items.add("Custom Object Mapping Example");
-        // items.add("Custom View Mapping Example");
+        items.add("Basic Auto Map Example");
 
         mList.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, items));
         mList.setOnItemClickListener(this);
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         } else if (position == 1) {
             intent = new Intent(this, ObjectMappingExample.class);
         } else if (position == 2) {
-            intent = new Intent(this, BasicMappingExample.class);
+            intent = new Intent(this, BasicAutoMapExample.class);
         }
 
         startActivity(intent);

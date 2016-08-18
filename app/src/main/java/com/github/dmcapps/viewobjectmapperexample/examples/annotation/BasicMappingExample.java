@@ -1,7 +1,8 @@
-package com.github.dmcapps.viewobjectmapperexample.examples;
+package com.github.dmcapps.viewobjectmapperexample.examples.annotation;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -12,7 +13,10 @@ import com.github.dmcapps.viewobjectmapper.core.ViewId;
 import com.github.dmcapps.viewobjectmapper.core.ViewObjectMapper;
 import com.github.dmcapps.viewobjectmapperexample.R;
 
+import java.util.Date;
+
 public class BasicMappingExample extends AppCompatActivity {
+    private static final String TAG = BasicMappingExample.class.getSimpleName();
 
     @ViewId(R.id.test_text_view)
     private TextView mTextView;
@@ -30,9 +34,10 @@ public class BasicMappingExample extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_basic_mapping_example);
 
-        final ViewGroup viewGroup = (ViewGroup) ((ViewGroup) findViewById(android.R.id.content)).getChildAt(0);
-        ViewObjectMapper.mapObjectToView(this, viewGroup);
+        Date startTime = new Date();
+        ViewObjectMapper.mapObjectToView(this, findViewById(R.id.container));
+        Date endTime = new Date();
 
-
+        Log.d(TAG, String.format("Time to Map: %d", (endTime.getTime() - startTime.getTime())));
     }
 }
