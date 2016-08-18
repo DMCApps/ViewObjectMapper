@@ -6,9 +6,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Created by DCarmo on 16-08-18.
+ * Created by DCarmo on 16-08-17.
  */
+
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface NoViewMap {
+public @interface ViewMapped {
+    int value() default Integer.MIN_VALUE;
 }

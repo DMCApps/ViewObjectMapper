@@ -9,7 +9,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.github.dmcapps.viewobjectmapper.core.ViewObjectMapper;
-import com.github.dmcapps.viewobjectmapper.core.annotations.NoViewMap;
+import com.github.dmcapps.viewobjectmapper.core.annotations.ViewMapped;
 import com.github.dmcapps.viewobjectmapperexample.R;
 
 import java.util.Date;
@@ -20,10 +20,15 @@ public class BasicAutoMapExample extends AppCompatActivity {
     // Note some of these are without the m prefix
     // The parser will remove the m prefix so that it doesn't
     // Need to be in the android:id xml field.
+    @ViewMapped
     private TextView mTextView;
+    @ViewMapped
     private EditText EditText;
+    @ViewMapped
     private RadioGroup mRadioGroup;
+    @ViewMapped
     private RadioButton RadioButton1;
+    @ViewMapped
     private RadioButton mRadioButton2;
 
     @Override
@@ -32,7 +37,6 @@ public class BasicAutoMapExample extends AppCompatActivity {
         setContentView(R.layout.activity_basic_auto_map_example);
 
         ViewObjectMapper.setUpResourceIdClass(R.id.class);
-        ViewObjectMapper.enableAutoMap(true);
         Date startTime = new Date();
         ViewObjectMapper.mapObjectToView(this, findViewById(R.id.container));
         Date endTime = new Date();

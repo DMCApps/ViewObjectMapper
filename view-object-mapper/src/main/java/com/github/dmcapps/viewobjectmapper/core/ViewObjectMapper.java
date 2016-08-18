@@ -3,8 +3,7 @@ package com.github.dmcapps.viewobjectmapper.core;
 import android.util.Log;
 import android.view.View;
 
-import com.github.dmcapps.viewobjectmapper.core.annotations.NoViewMap;
-import com.github.dmcapps.viewobjectmapper.core.annotations.ViewId;
+import com.github.dmcapps.viewobjectmapper.core.annotations.ViewMapped;
 import com.github.dmcapps.viewobjectmapper.utils.ResourceUtil;
 import com.google.common.base.CaseFormat;
 
@@ -17,7 +16,6 @@ public final class ViewObjectMapper {
     private static final String TAG = ViewObjectMapper.class.getSimpleName();
 
     private static Class<?> mResIdClass;
-    private static boolean mEnableAutoMap;
 
     /**
      * One time set up when using the {@link ViewObjectMapper#mapObjectToView(Object, View)} method
@@ -31,53 +29,36 @@ public final class ViewObjectMapper {
         mResIdClass = resIdClass;
     }
 
-    /**
-     * Enable the auto mapping feature. This feature requires you to call {@link ViewObjectMapper#setUpResourceIdClass(Class)}
-     * first in order to properly use the auto mapping feature.
-     *
-     * @param
-     *      enableAutoMap -> true to enable, false to disable
-     */
-    public static void enableAutoMap(boolean enableAutoMap) {
-
-        if (mResIdClass == null) {
-            throw new RuntimeException("In order to enable the auto mapping feature you MUST class setUpResourceIdClass for use in the mapper!");
-        }
-
-        mEnableAutoMap = enableAutoMap;
-    }
-
     public static void mapObjectToView(Object object, View mainView) {
         Class<?> clazz = object.getClass();
         while (clazz != null && !clazz.getName().startsWith("android")) {
             final Field[] fields = clazz.getDeclaredFields();
             for (Field field : fields) {
-                if (!field.isAnnotationPresent(NoViewMap.class)) {
-                    if (field.isAnnotationPresent(ViewId.class)) {
-                        annotationMapObjectToView(mainView, object, field);
-                    } else if (mEnableAutoMap
-                            && View.class.isAssignableFrom(field.getType())) {
-
-                        if (mResIdClass == null) {
-                            throw new RuntimeException("In order to use the mapObjectToView(Object, View) auto mapping feature you MUST class setUpResourceIdClass to give us your R.id.class!");
-                        }
-
-                        autoMapObjectToView(mainView, object, field);
-                    }
+                if (field.isAnnotationPresent(ViewMapped.class)) {
+                    mapObjectToView(mainView, object, field);
                 }
             }
             clazz = clazz.getSuperclass();
         }
     }
 
-    private static void annotationMapObjectToView(View mainView, Object object, Field field) {
-        final ViewId annotation = field.getAnnotation(ViewId.class);
+    private static void mapObjectToView(View mainView, Object object, Field field) {
+        final ViewMapped annotation = field.getAnnotation(ViewMapped.class);
         int resId = annotation.value();
 
+        if (resId == Integer.MIN_VALUE) {
+            if (mResIdClass == null) {
+                throw new RuntimeException("In order to use the mapObjectToView(Object, View) auto mapping feature you MUST class setUpResourceIdClass to give us your R.id.class!");
+            }
+
+            resId = resIdFromField(field);
+        }
+
         setViewWithResIdToObjectField(mainView, resId, object, field);
+
     }
 
-    private static void autoMapObjectToView(View mainView, Object object, Field field) {
+    private static int resIdFromField(Field field) {
         String fieldName = field.getName();
         String searchResName = CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, fieldName);
         // Check if the field name starts with m and trim it
@@ -89,9 +70,8 @@ public final class ViewObjectMapper {
         if (resId == Integer.MIN_VALUE) {
             Log.e(TAG, "Unable to find view id for field named " + fieldName + " attempting to find R.id.class key " + searchResName);
         }
-        else {
-            setViewWithResIdToObjectField(mainView, resId, object, field);
-        }
+
+        return resId;
     }
 
     private static void setViewWithResIdToObjectField(View mainView, int resId, Object object, Field field) {

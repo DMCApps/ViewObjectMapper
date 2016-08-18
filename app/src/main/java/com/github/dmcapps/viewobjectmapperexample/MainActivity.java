@@ -9,7 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.github.dmcapps.viewobjectmapper.core.annotations.ViewId;
+import com.github.dmcapps.viewobjectmapper.core.annotations.ViewMapped;
 import com.github.dmcapps.viewobjectmapper.core.ViewObjectMapper;
 import com.github.dmcapps.viewobjectmapperexample.examples.annotation.BasicMappingExample;
 import com.github.dmcapps.viewobjectmapperexample.examples.annotation.ObjectMappingExample;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
-    @ViewId(android.R.id.list)
+    @ViewMapped(android.R.id.list)
     ListView mList;
 
     @Override
