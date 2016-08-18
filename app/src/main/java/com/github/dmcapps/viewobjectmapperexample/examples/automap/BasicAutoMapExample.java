@@ -2,7 +2,6 @@ package com.github.dmcapps.viewobjectmapperexample.examples.automap;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -25,11 +24,11 @@ public class BasicAutoMapExample extends AppCompatActivity {
     @ViewMapped
     private TextView mTextView;
     @ViewMapped
-    private EditText EditText;
+    private EditText mEditText;
     @ViewMapped
     private RadioGroup mRadioGroup;
     @ViewMapped
-    private RadioButton RadioButton1;
+    private RadioButton mRadioButton1;
     @ViewMapped
     private RadioButton mRadioButton2;
 
