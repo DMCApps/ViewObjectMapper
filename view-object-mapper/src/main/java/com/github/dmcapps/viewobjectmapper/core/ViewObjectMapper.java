@@ -2,8 +2,9 @@ package com.github.dmcapps.viewobjectmapper.core;
 
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 
+import com.github.dmcapps.viewobjectmapper.core.annotations.NoViewMap;
+import com.github.dmcapps.viewobjectmapper.core.annotations.ViewId;
 import com.github.dmcapps.viewobjectmapper.utils.ResourceUtil;
 import com.google.common.base.CaseFormat;
 
@@ -51,17 +52,18 @@ public final class ViewObjectMapper {
         while (clazz != null && !clazz.getName().startsWith("android")) {
             final Field[] fields = clazz.getDeclaredFields();
             for (Field field : fields) {
-                if (field.isAnnotationPresent(ViewId.class)) {
-                    annotationMapObjectToView(mainView, object, field);
-                }
-                else if (mEnableAutoMap
-                        && View.class.isAssignableFrom(field.getType())) {
+                if (!field.isAnnotationPresent(NoViewMap.class)) {
+                    if (field.isAnnotationPresent(ViewId.class)) {
+                        annotationMapObjectToView(mainView, object, field);
+                    } else if (mEnableAutoMap
+                            && View.class.isAssignableFrom(field.getType())) {
 
-                    if (mResIdClass == null) {
-                        throw new RuntimeException("In order to use the mapObjectToView(Object, View) auto mapping feature you MUST class setUpResourceIdClass to give us your R.id.class!");
+                        if (mResIdClass == null) {
+                            throw new RuntimeException("In order to use the mapObjectToView(Object, View) auto mapping feature you MUST class setUpResourceIdClass to give us your R.id.class!");
+                        }
+
+                        autoMapObjectToView(mainView, object, field);
                     }
-
-                    autoMapObjectToView(mainView, object, field);
                 }
             }
             clazz = clazz.getSuperclass();
@@ -96,7 +98,7 @@ public final class ViewObjectMapper {
         View foundView = mainView.findViewById(resId);
 
         if (foundView == null) {
-            Log.e(TAG, "Unable to find view with resource id " + resId + ". Mark with @NonMapped annotation to prevent the parser for attempting to map the View or ViewGroup.");
+            Log.e(TAG, "Unable to find view with resource id " + resId + ". Mark with @NoViewMap annotation to prevent the parser for attempting to map the View or ViewGroup.");
         }
         else {
             try {

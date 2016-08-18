@@ -9,7 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.github.dmcapps.viewobjectmapper.core.ViewId;
+import com.github.dmcapps.viewobjectmapper.core.annotations.ViewId;
 import com.github.dmcapps.viewobjectmapper.core.ViewObjectMapper;
 import com.github.dmcapps.viewobjectmapperexample.examples.annotation.BasicMappingExample;
 import com.github.dmcapps.viewobjectmapperexample.examples.annotation.ObjectMappingExample;

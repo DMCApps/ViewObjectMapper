@@ -8,8 +8,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.github.dmcapps.viewobjectmapper.core.ViewId;
 import com.github.dmcapps.viewobjectmapper.core.ViewObjectMapper;
+import com.github.dmcapps.viewobjectmapper.core.annotations.NoViewMap;
 import com.github.dmcapps.viewobjectmapperexample.R;
 
 import java.util.Date;
