@@ -33,7 +33,10 @@ public class PrefixAutoMapExample extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prefix_auto_map_example);
 
-        ViewObjectMapper.setUpResourceIdClass(R.id.class);
-        ViewObjectMapper.mapObjectToView(this, findViewById(R.id.automap_container));
+        Date startTime = new Date();
+        ViewObjectMapper.mapObjectToView(this, this, findViewById(R.id.automap_container));
+        Date endTime = new Date();
+
+        Log.i(TAG, "Time to map: " + (endTime.getTime() - startTime.getTime()));
     }
 }

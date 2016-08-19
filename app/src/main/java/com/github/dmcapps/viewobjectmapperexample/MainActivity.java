@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         setContentView(R.layout.activity_main);
 
         final ViewGroup viewGroup = (ViewGroup) ((ViewGroup) findViewById(android.R.id.content)).getChildAt(0);
-        ViewObjectMapper.mapObjectToView(this, viewGroup);
+        ViewObjectMapper.mapObjectToView(this, this, viewGroup);
 
         ArrayList<String> items = new ArrayList<>();
         items.add("Basic Mapping Example");

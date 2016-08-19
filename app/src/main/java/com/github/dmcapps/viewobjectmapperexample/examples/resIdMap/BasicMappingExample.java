@@ -33,6 +33,6 @@ public class BasicMappingExample extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_basic_mapping_example);
 
-        ViewObjectMapper.mapObjectToView(this, findViewById(R.id.automap_container));
+        ViewObjectMapper.mapObjectToView(this, this, findViewById(R.id.automap_container));
     }
 }
