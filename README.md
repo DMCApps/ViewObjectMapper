@@ -20,7 +20,7 @@ compile 'com.github.dmcapps:view-object-mapper:0.0.1'
 
 This library allows you to map models to UI elements with ease! No more findViewById and casting to get your layout linked with your local files.
 
-Simple add the `@ViewMapped` annotation to your property, and match the id from the XML (using underscores) to the name of the property (using camel casing). Call the `ViewObjectMapper.mapObjectToView(Object, View)` in the method of your choosing after you've created the view and you're done. See the full examples below and in the project.
+Simple add the `@ViewMapped` annotation to your property, and match the id from the XML (using underscores eg `android:id="@+id/button_hello"`) to the name of the property (using camel casing `eg Button mButtonHello`). Call the `ViewObjectMapper.mapObjectToView(Object, View)` in the method of your choosing after you've created the view and you're done. See the full examples below and in the project.
 
 ###Example
 
