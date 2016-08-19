@@ -36,14 +36,19 @@ public class BasicAutoMapExample extends AppCompatActivity {
     // Note some of these are without the m prefix
     // The parser will remove the m prefix so that it doesn't
     // Need to be in the android:id xml field.
+    // this maps to text_view
     @ViewMapped
     TextView mTextView;
+    // this maps to edit_text
     @ViewMapped
     EditText EditText;
+    // this maps to radio_group
     @ViewMapped
     RadioGroup mRadioGroup;
+    // this maps to radio_button1
     @ViewMapped
     RadioButton RadioButton1;
+    // this maps to radio_button2
     @ViewMapped
     RadioButton mRadioButton2;
 
@@ -74,28 +79,33 @@ The above class links to the following layout `activity_basic_auto_map_example.x
     android:orientation="vertical"
     tools:context=".examples.automap.BasicAutoMapExample">
 
+    <!-- This maps to mTextView OR textView -->
     <TextView
         android:id="@+id/text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Text View Example" />
 
+    <!-- This maps to mEditText OR editText -->
     <EditText
         android:id="@+id/edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <!-- This maps to mRadioGroup OR radioGroup -->
     <RadioGroup
         android:id="@+id/radio_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <!-- This maps to mRadioButton1 OR radioButton1 -->
         <RadioButton
             android:id="@+id/radio_button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Radio 1" />
 
+        <!-- This maps to mRadioButton2 OR radioButton2 -->
         <RadioButton
             android:id="@+id/radio_button2"
             android:layout_width="wrap_content"
@@ -118,14 +128,19 @@ import com.github.dmcapps.viewobjectmapper.core.annotations.ViewMapped;
 public class PrefixAutoMapExample extends AppCompatActivity {
     private static final String TAG = PrefixAutoMapExample.class.getSimpleName();
 
+    // this maps to prefix_example_text_view
     @ViewMapped(resIdPrefix = "prefix_example_")
     TextView mTextView;
+    // this maps to prefix_example_edit_text
     @ViewMapped(resIdPrefix = "prefix_example_")
     EditText mEditText;
+    // this maps to prefix_example_radio_group
     @ViewMapped(resIdPrefix = "prefix_example_")
     RadioGroup mRadioGroup;
+    // this maps to prefix_example_radio_button1
     @ViewMapped(resIdPrefix = "prefix_example_")
     RadioButton mRadioButton1;
+    // this maps to prefix_example_radio_button2
     @ViewMapped(resIdPrefix = "prefix_example_")
     RadioButton mRadioButton2;
 
