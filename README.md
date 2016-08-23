@@ -9,12 +9,12 @@ Daniel Carmo, dcarmo@alumni.uoguelph.ca
 In your app build.gradle file add the following to your dependencies. Project only available on jCenter repository.
 
 ```groovy
-compile 'com.github.dmcapps:view-object-mapper:0.0.3'
+compile 'com.github.dmcapps:view-object-mapper:0.0.4'
 ```
 
 ##Current Version
 
-0.0.3
+0.0.4
 
 ##Introduction
 
@@ -198,6 +198,10 @@ public class PrefixAutoMapExample extends AppCompatActivity {
 ```
 
 ##Change Log
+
+###0.0.4
+- Made ViewIdPrefix annotation available at runtime and limited to fields
+- Refactoring to `ViewObjectMapper` class
 
 ###0.0.3
 - Removed the `ViewMapped` annotation.
