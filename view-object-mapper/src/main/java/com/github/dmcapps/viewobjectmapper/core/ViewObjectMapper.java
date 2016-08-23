@@ -18,6 +18,14 @@ import java.util.Locale;
 public final class ViewObjectMapper {
     private static final String TAG = ViewObjectMapper.class.getSimpleName();
 
+    // ==================
+    // PROPERTIES
+    // ==================
+
+    // ==================
+    // PUBLIC
+    // ==================
+
     public static void mapObjectToView(Context context, Object object, View mainView) {
         if (context == null || object == null || mainView == null) {
             throw new RuntimeException("You must provide a context, object and view to ViewObjectMapper#mapObjectToView");
@@ -35,7 +43,16 @@ public final class ViewObjectMapper {
         }
     }
 
+    // ==================
+    // PRIVATE
+    // ==================
+
     private static void mapObjectToView(Context context, View mainView, Object object, Field field) {
+        int resId = resIdFromField(context, field);
+        setViewWithResIdToObjectField(mainView, resId, object, field);
+    }
+
+    private static int resIdFromField(Context context, Field field) {
         int resId = Integer.MIN_VALUE;
         if (field.isAnnotationPresent(ViewResourceId.class)) {
             final ViewResourceId annotation = field.getAnnotation(ViewResourceId.class);
@@ -43,13 +60,24 @@ public final class ViewObjectMapper {
         }
 
         if (resId == Integer.MIN_VALUE) {
-            resId = resIdFromField(context, field);
+            resId = resIdFromFieldName(context, field);
         }
 
-        setViewWithResIdToObjectField(mainView, resId, object, field);
+        return resId;
     }
 
-    private static int resIdFromField(Context context, Field field) {
+    private static int resIdFromFieldName(Context context, Field field) {
+        String searchResName = resNameFromFieldName(field);
+        int resId = ResourceUtil.getResId(context, searchResName, "id");
+
+        if (resId == Integer.MIN_VALUE) {
+            Log.e(TAG, "Unable to find view id for field '" + field.getName() + "' attempting to find R.id." + searchResName);
+        }
+
+        return resId;
+    }
+
+    private static String resNameFromFieldName(Field field) {
         String resIdPrefix = "";
         if (field.isAnnotationPresent(ViewIdPrefix.class)) {
             final ViewIdPrefix annotation = field.getAnnotation(ViewIdPrefix.class);
@@ -64,14 +92,7 @@ public final class ViewObjectMapper {
         }
 
         searchResName = String.format(Locale.ENGLISH, "%s%s", resIdPrefix, searchResName);
-
-        int resId = ResourceUtil.getResId(context, searchResName, "id");
-
-        if (resId == Integer.MIN_VALUE) {
-            Log.e(TAG, "Unable to find view id for field named " + fieldName + " attempting to find R.id.class key " + searchResName);
-        }
-
-        return resId;
+        return searchResName;
     }
 
     private static void setViewWithResIdToObjectField(View mainView, int resId, Object object, Field field) {
