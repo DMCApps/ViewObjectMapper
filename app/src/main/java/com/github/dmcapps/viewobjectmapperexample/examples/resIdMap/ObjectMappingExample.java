@@ -24,5 +24,11 @@ public class ObjectMappingExample extends AppCompatActivity {
         Date endTime = new Date();
 
         Log.i(TAG, "Time to map: " + (endTime.getTime() - startTime.getTime()));
+
+        assert(mViewHolder.mTextView == null
+                || mViewHolder.mEditText == null
+                || mViewHolder.mRadioGroup == null
+                || mViewHolder.mRadioButton1 == null
+                || mViewHolder.mRadioButton2 == null);
     }
 }

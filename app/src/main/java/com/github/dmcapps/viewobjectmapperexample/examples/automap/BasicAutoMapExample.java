@@ -37,5 +37,11 @@ public class BasicAutoMapExample extends AppCompatActivity {
         Date endTime = new Date();
 
         Log.i(TAG, "Time to map: " + (endTime.getTime() - startTime.getTime()));
+
+        assert(mTextView == null
+                || mEditText == null
+                || mRadioGroup == null
+                || mRadioButton1 == null
+                || mRadioButton2 == null);
     }
 }
