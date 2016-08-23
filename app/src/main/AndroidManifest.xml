@@ -19,6 +19,7 @@
         <activity android:name=".examples.resIdMap.ObjectMappingExample" />
         <activity android:name=".examples.automap.BasicAutoMapExample" />
         <activity android:name=".examples.automap.PrefixAutoMapExample" />
+        <activity android:name=".examples.resIdMap.MapWithResourceIdExample"></activity>
     </application>
 
 </manifest>

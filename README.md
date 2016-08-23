@@ -9,18 +9,18 @@ Daniel Carmo, dcarmo@alumni.uoguelph.ca
 In your app build.gradle file add the following to your dependencies. Project only available on jCenter repository.
 
 ```groovy
-compile 'com.github.dmcapps:view-object-mapper:0.0.2'
+compile 'com.github.dmcapps:view-object-mapper:0.0.3'
 ```
 
 ##Current Version
 
-0.0.2
+0.0.3
 
 ##Introduction
 
 This library allows you to map models to UI elements with ease! No more findViewById and casting to get your layout linked with your local files.
 
-Simple add the `@ViewMapped` annotation to your property, and match the id from the XML (using underscores eg `android:id="@+id/button_hello"`) to the name of the property (using camel casing `eg Button mButtonHello`). Call the `ViewObjectMapper.mapObjectToView(Object, View)` in the method of your choosing after you've created the view and you're done. See the full examples below and in the project.
+Simplely match the id from the XML (using underscores eg `android:id="@+id/button_hello"`) to the name of the property (using camel casing `eg Button mButtonHello`). Call the `ViewObjectMapper.mapObjectToView(Context, Object, View)` in the method of your choosing after you've created the view and you're done. See the full examples below and in the project.
 
 ###Example
 
@@ -28,7 +28,7 @@ In your Activity, Fragment, etc. you add your properties that you would like map
 
 ``` java
 import com.github.dmcapps.viewobjectmapper.core.ViewObjectMapper;
-import com.github.dmcapps.viewobjectmapper.core.annotations.ViewMapped;
+import com.github.dmcapps.viewobjectmapper.core.annotations.ViewResourceId;
 
 public class BasicAutoMapExample extends AppCompatActivity {
     private static final String TAG = BasicAutoMapExample.class.getSimpleName();
@@ -37,19 +37,14 @@ public class BasicAutoMapExample extends AppCompatActivity {
     // The parser will remove the m prefix so that it doesn't
     // Need to be in the android:id xml field.
     // this maps to text_view
-    @ViewMapped
     TextView mTextView;
     // this maps to edit_text
-    @ViewMapped
     EditText EditText;
     // this maps to radio_group
-    @ViewMapped
     RadioGroup mRadioGroup;
     // this maps to radio_button1
-    @ViewMapped
     RadioButton RadioButton1;
     // this maps to radio_button2
-    @ViewMapped
     RadioButton mRadioButton2;
 
     @Override
@@ -117,31 +112,31 @@ The above class links to the following layout `activity_basic_auto_map_example.x
 </LinearLayout>
 ```
 
-Have a prefix that you like to add to all your xml files? If so you can take advantage of the `resIdPrefix` on the `ViewMapped` annotation. Below is an example of that in action!
+Have a prefix that you like to add to all your xml ids? If so you can take advantage of the `ViewIdPrefix`annotation. Below is an example of that in action!
 
 ```java
 ... 
 
 import com.github.dmcapps.viewobjectmapper.core.ViewObjectMapper;
-import com.github.dmcapps.viewobjectmapper.core.annotations.ViewMapped;
+import com.github.dmcapps.viewobjectmapper.core.annotations.ViewResourceId;
 
 public class PrefixAutoMapExample extends AppCompatActivity {
     private static final String TAG = PrefixAutoMapExample.class.getSimpleName();
 
     // this maps to prefix_example_text_view
-    @ViewMapped(resIdPrefix = "prefix_example_")
+    @ViewIdPrefix("prefix_example_")
     TextView mTextView;
     // this maps to prefix_example_edit_text
-    @ViewMapped(resIdPrefix = "prefix_example_")
+    @ViewIdPrefix("prefix_example_")
     EditText mEditText;
     // this maps to prefix_example_radio_group
-    @ViewMapped(resIdPrefix = "prefix_example_")
+    @ViewIdPrefix("prefix_example_")
     RadioGroup mRadioGroup;
     // this maps to prefix_example_radio_button1
-    @ViewMapped(resIdPrefix = "prefix_example_")
+    @ViewIdPrefix("prefix_example_")
     RadioButton mRadioButton1;
     // this maps to prefix_example_radio_button2
-    @ViewMapped(resIdPrefix = "prefix_example_")
+    @ViewIdPrefix("prefix_example_")
     RadioButton mRadioButton2;
 
     @Override
@@ -203,6 +198,13 @@ public class PrefixAutoMapExample extends AppCompatActivity {
 ```
 
 ##Change Log
+
+###0.0.3
+- Removed the `ViewMapped` annotation.
+- ViewObjectMapper is now smart enough to make the mapping for you based off the name of the view!
+- Can now use the `ViewResourceId` annotation to give a view id directly
+- Can now use the `ViewIdPrefix` annotation to add a prefix to the objects converted name
+- Updated all examples to reflect the changes above
 
 ###0.0.2
 - Removed the requirement for the one time set up.

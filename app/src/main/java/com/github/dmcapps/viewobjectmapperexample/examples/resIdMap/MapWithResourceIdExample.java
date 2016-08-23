@@ -1,4 +1,4 @@
-package com.github.dmcapps.viewobjectmapperexample.examples.automap;
+package com.github.dmcapps.viewobjectmapperexample.examples.resIdMap;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,28 +9,29 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.github.dmcapps.viewobjectmapper.core.ViewObjectMapper;
+import com.github.dmcapps.viewobjectmapper.core.annotations.ViewResourceId;
 import com.github.dmcapps.viewobjectmapperexample.R;
 
 import java.util.Date;
 
-// TODO: Runtime check layout for mappings
-// TODO: Add prefix to annotation to have a custom prefix on all values
-public class BasicAutoMapExample extends AppCompatActivity {
-    private static final String TAG = BasicAutoMapExample.class.getSimpleName();
+public class MapWithResourceIdExample extends AppCompatActivity {
+    private static final String TAG = MapWithResourceIdExample.class.getSimpleName();
 
-    // Note some of these are without the m prefix
-    // The parser will remove the m prefix so that it doesn't
-    // Need to be in the android:id xml field.
+    @ViewResourceId(R.id.test_text_view)
     private TextView mTextView;
+    @ViewResourceId(R.id.test_edit_text)
     private EditText mEditText;
+    @ViewResourceId(R.id.test_radio_group)
     private RadioGroup mRadioGroup;
+    @ViewResourceId(R.id.test_radio_button_1)
     private RadioButton mRadioButton1;
+    @ViewResourceId(R.id.test_radio_button_2)
     private RadioButton mRadioButton2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_basic_auto_map_example);
+        setContentView(R.layout.activity_map_with_resource_id_example);
 
         Date startTime = new Date();
         ViewObjectMapper.mapObjectToView(this, this, findViewById(R.id.automap_container));

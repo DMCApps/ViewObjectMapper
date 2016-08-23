@@ -4,7 +4,8 @@ import android.content.Context;
 import android.util.Log;
 import android.view.View;
 
-import com.github.dmcapps.viewobjectmapper.core.annotations.ViewMapped;
+import com.github.dmcapps.viewobjectmapper.core.annotations.ViewIdPrefix;
+import com.github.dmcapps.viewobjectmapper.core.annotations.ViewResourceId;
 import com.github.dmcapps.viewobjectmapper.utils.ResourceUtil;
 import com.google.common.base.CaseFormat;
 
@@ -26,7 +27,7 @@ public final class ViewObjectMapper {
         while (clazz != null && !clazz.getName().startsWith("android")) {
             final Field[] fields = clazz.getDeclaredFields();
             for (Field field : fields) {
-                if (field.isAnnotationPresent(ViewMapped.class)) {
+                if (View.class.isAssignableFrom(field.getType())) {
                     mapObjectToView(context, mainView, object, field);
                 }
             }
@@ -35,17 +36,26 @@ public final class ViewObjectMapper {
     }
 
     private static void mapObjectToView(Context context, View mainView, Object object, Field field) {
-        final ViewMapped annotation = field.getAnnotation(ViewMapped.class);
-        int resId = annotation.value();
+        int resId = Integer.MIN_VALUE;
+        if (field.isAnnotationPresent(ViewResourceId.class)) {
+            final ViewResourceId annotation = field.getAnnotation(ViewResourceId.class);
+            resId = annotation.value();
+        }
 
         if (resId == Integer.MIN_VALUE) {
-            resId = resIdFromField(context, annotation.resIdPrefix(), field);
+            resId = resIdFromField(context, field);
         }
 
         setViewWithResIdToObjectField(mainView, resId, object, field);
     }
 
-    private static int resIdFromField(Context context, String resIdPrefix, Field field) {
+    private static int resIdFromField(Context context, Field field) {
+        String resIdPrefix = "";
+        if (field.isAnnotationPresent(ViewIdPrefix.class)) {
+            final ViewIdPrefix annotation = field.getAnnotation(ViewIdPrefix.class);
+            resIdPrefix = annotation.value();
+        }
+
         String fieldName = field.getName();
         String searchResName = CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, fieldName);
         // Check if the field name starts with m and trim it

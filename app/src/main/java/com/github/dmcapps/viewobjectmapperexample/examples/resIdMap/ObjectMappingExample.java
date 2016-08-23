@@ -19,6 +19,10 @@ public class ObjectMappingExample extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_object_mapping_example);
 
+        Date startTime = new Date();
         ViewObjectMapper.mapObjectToView(this, mViewHolder, findViewById(R.id.automap_container));
+        Date endTime = new Date();
+
+        Log.i(TAG, "Time to map: " + (endTime.getTime() - startTime.getTime()));
     }
 }

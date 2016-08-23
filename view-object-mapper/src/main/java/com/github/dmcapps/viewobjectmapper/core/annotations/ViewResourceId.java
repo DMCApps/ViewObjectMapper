@@ -11,7 +11,6 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface ViewMapped {
-    int value() default Integer.MIN_VALUE;
-    String resIdPrefix() default "";
+public @interface ViewResourceId {
+    int value();
 }

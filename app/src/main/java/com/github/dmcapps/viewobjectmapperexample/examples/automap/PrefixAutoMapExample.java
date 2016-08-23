@@ -9,7 +9,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.github.dmcapps.viewobjectmapper.core.ViewObjectMapper;
-import com.github.dmcapps.viewobjectmapper.core.annotations.ViewMapped;
+import com.github.dmcapps.viewobjectmapper.core.annotations.ViewIdPrefix;
 import com.github.dmcapps.viewobjectmapperexample.R;
 
 import java.util.Date;
@@ -17,15 +17,15 @@ import java.util.Date;
 public class PrefixAutoMapExample extends AppCompatActivity {
     private static final String TAG = PrefixAutoMapExample.class.getSimpleName();
 
-    @ViewMapped(resIdPrefix = "prefix_example_")
+    @ViewIdPrefix("prefix_example_")
     private TextView mTextView;
-    @ViewMapped(resIdPrefix = "prefix_example_")
+    @ViewIdPrefix("prefix_example_")
     private EditText mEditText;
-    @ViewMapped(resIdPrefix = "prefix_example_")
+    @ViewIdPrefix("prefix_example_")
     private RadioGroup mRadioGroup;
-    @ViewMapped(resIdPrefix = "prefix_example_")
+    @ViewIdPrefix("prefix_example_")
     private RadioButton mRadioButton1;
-    @ViewMapped(resIdPrefix = "prefix_example_")
+    @ViewIdPrefix("prefix_example_")
     private RadioButton mRadioButton2;
 
     @Override
