@@ -1,8 +1,11 @@
 package com.github.dmcapps.viewobjectmapper.core;
 
+import android.app.Activity;
+import android.app.Fragment;
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.github.dmcapps.viewobjectmapper.core.annotations.ViewIdPrefix;
 import com.github.dmcapps.viewobjectmapper.core.annotations.ViewResourceId;
@@ -26,10 +29,30 @@ public final class ViewObjectMapper {
     // PUBLIC
     // ==================
 
+    public static void mapObjectToView(Activity activity) {
+        mapObjectToView(activity, activity, getAndroidContentViewGroup(activity));
+    }
+
+    public static void mapObjectToView(Activity activity, Object object) {
+        mapObjectToView(activity, object, getAndroidContentViewGroup(activity));
+    }
+
+    public static void mapObjectToView(Fragment fragment) {
+        validateFragmentIsSetUp(fragment);
+
+        Activity activity = fragment.getActivity();
+        mapObjectToView(activity, fragment, getAndroidContentViewGroup(activity));
+    }
+
+    public static void mapObjectToView(Fragment fragment, Object object) {
+        validateFragmentIsSetUp(fragment);
+
+        Activity activity = fragment.getActivity();
+        mapObjectToView(activity, object, getAndroidContentViewGroup(activity));
+    }
+
     public static void mapObjectToView(Context context, Object object, View mainView) {
-        if (context == null || object == null || mainView == null) {
-            throw new RuntimeException("You must provide a context, object and view to ViewObjectMapper#mapObjectToView");
-        }
+        validateMapObjectToViewInputs(context, object, mainView);
 
         Class<?> clazz = object.getClass();
         while (clazz != null && !clazz.getName().startsWith("android")) {
@@ -46,6 +69,22 @@ public final class ViewObjectMapper {
     // ==================
     // PRIVATE
     // ==================
+
+    private static void validateFragmentIsSetUp(Fragment fragment) {
+        if (fragment.getView() == null) {
+            throw new RuntimeException("You must call ViewObjectMapper#mapObjectToView during or after the Fragment#onViewCreated method.");
+        }
+    }
+
+    private static void validateMapObjectToViewInputs(Context context, Object object, View view) {
+        if (context == null || object == null || view == null) {
+            throw new RuntimeException("You must provide a context, object and view to ViewObjectMapper#mapObjectToView");
+        }
+    }
+
+    private static ViewGroup getAndroidContentViewGroup(Activity activity) {
+        return (ViewGroup) activity.getWindow().getDecorView().findViewById(android.R.id.content);
+    }
 
     private static void mapObjectToView(Context context, View mainView, Object object, Field field) {
         int resId = resIdFromField(context, field);

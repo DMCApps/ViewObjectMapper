@@ -11,7 +11,7 @@ import com.github.dmcapps.viewobjectmapperexample.R;
 /**
  * Created by DCarmo on 16-08-17.
  */
-public class ViewHolder {
+public class ViewHolderUsingResourceId {
 
     @ViewResourceId(R.id.test_text_view)
     public TextView mTextView;

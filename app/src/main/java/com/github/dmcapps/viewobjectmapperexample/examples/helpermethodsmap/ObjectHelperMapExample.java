@@ -1,25 +1,26 @@
-package com.github.dmcapps.viewobjectmapperexample.examples.resIdMap;
+package com.github.dmcapps.viewobjectmapperexample.examples.helpermethodsmap;
 
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.util.Log;
 
 import com.github.dmcapps.viewobjectmapper.core.ViewObjectMapper;
 import com.github.dmcapps.viewobjectmapperexample.R;
+import com.github.dmcapps.viewobjectmapperexample.examples.resIdMap.ViewHolderUsingResourceId;
 
 import java.util.Date;
 
-public class ObjectMappingExample extends AppCompatActivity {
-    private static final String TAG = ObjectMappingExample.class.getSimpleName();
+public class ObjectHelperMapExample extends AppCompatActivity {
+    private static final String TAG = ObjectHelperMapExample.class.getSimpleName();
 
-    ViewHolderUsingResourceId mViewHolder = new ViewHolderUsingResourceId();
+    ViewHolderUsingNames mViewHolder = new ViewHolderUsingNames();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_object_mapping_example);
+        setContentView(R.layout.activity_object_helper_map_example);
 
-        ViewObjectMapper.mapObjectToView(this, mViewHolder, findViewById(R.id.automap_container));
+        ViewObjectMapper.mapObjectToView(this, mViewHolder);
 
         if (mViewHolder.mTextView == null
                 || mViewHolder.mEditText == null

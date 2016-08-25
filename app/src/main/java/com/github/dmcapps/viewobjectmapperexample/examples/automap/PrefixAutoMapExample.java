@@ -33,16 +33,14 @@ public class PrefixAutoMapExample extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prefix_auto_map_example);
 
-        Date startTime = new Date();
         ViewObjectMapper.mapObjectToView(this, this, findViewById(R.id.automap_container));
-        Date endTime = new Date();
 
-        Log.i(TAG, "Time to map: " + (endTime.getTime() - startTime.getTime()));
-
-        assert(mTextView == null
+        if (mTextView == null
                 || mEditText == null
                 || mRadioGroup == null
                 || mRadioButton1 == null
-                || mRadioButton2 == null);
+                || mRadioButton2 == null) {
+            throw new RuntimeException(TAG + ": Failed to map object");
+        }
     }
 }

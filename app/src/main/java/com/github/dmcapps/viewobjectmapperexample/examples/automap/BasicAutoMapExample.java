@@ -18,9 +18,6 @@ import java.util.Date;
 public class BasicAutoMapExample extends AppCompatActivity {
     private static final String TAG = BasicAutoMapExample.class.getSimpleName();
 
-    // Note some of these are without the m prefix
-    // The parser will remove the m prefix so that it doesn't
-    // Need to be in the android:id xml field.
     private TextView mTextView;
     private EditText mEditText;
     private RadioGroup mRadioGroup;
@@ -32,16 +29,14 @@ public class BasicAutoMapExample extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_basic_auto_map_example);
 
-        Date startTime = new Date();
         ViewObjectMapper.mapObjectToView(this, this, findViewById(R.id.automap_container));
-        Date endTime = new Date();
 
-        Log.i(TAG, "Time to map: " + (endTime.getTime() - startTime.getTime()));
-
-        assert(mTextView == null
+        if (mTextView == null
                 || mEditText == null
                 || mRadioGroup == null
                 || mRadioButton1 == null
-                || mRadioButton2 == null);
+                || mRadioButton2 == null) {
+            throw new RuntimeException(TAG + ": Failed to map object");
+        }
     }
 }

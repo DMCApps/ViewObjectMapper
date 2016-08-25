@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">ViewObjectMapper</string>
     <string name="title_activity_basic_auto_map_example">BasicAutoMapExample</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

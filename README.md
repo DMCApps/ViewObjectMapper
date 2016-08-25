@@ -9,18 +9,18 @@ Daniel Carmo, dcarmo@alumni.uoguelph.ca
 In your app build.gradle file add the following to your dependencies. Project only available on jCenter repository.
 
 ```groovy
-compile 'com.github.dmcapps:view-object-mapper:0.0.4'
+compile 'com.github.dmcapps:view-object-mapper:0.1.0'
 ```
 
 ##Current Version
 
-0.0.4
+0.1.0
 
 ##Introduction
 
 This library allows you to map models to UI elements with ease! No more findViewById and casting to get your layout linked with your local files.
 
-Simplely match the id from the XML (using underscores eg `android:id="@+id/button_hello"`) to the name of the property (using camel casing `eg Button mButtonHello`). Call the `ViewObjectMapper.mapObjectToView(Context, Object, View)` in the method of your choosing after you've created the view and you're done. See the full examples below and in the project.
+Simplely match the id from the XML (using underscores eg `android:id="@+id/button_hello"`) to the name of the property (using camel casing `eg Button mButtonHello`). Call the `ViewObjectMapper.mapObjectToView(Activity or Fragment)` in the method of your choosing after you've created the view and you're done. See the full examples below and in the project.
 
 ###Example
 
@@ -28,7 +28,6 @@ In your Activity, Fragment, etc. you add your properties that you would like map
 
 ``` java
 import com.github.dmcapps.viewobjectmapper.core.ViewObjectMapper;
-import com.github.dmcapps.viewobjectmapper.core.annotations.ViewResourceId;
 
 public class BasicAutoMapExample extends AppCompatActivity {
     private static final String TAG = BasicAutoMapExample.class.getSimpleName();
@@ -52,7 +51,7 @@ public class BasicAutoMapExample extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_basic_auto_map_example);
 
-        ViewObjectMapper.mapObjectToView(this, this, findViewById(R.id.automap_container));
+        ViewObjectMapper.mapObjectToView(this);
     }
 }
 ```
@@ -144,7 +143,7 @@ public class PrefixAutoMapExample extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prefix_auto_map_example);
         
-        ViewObjectMapper.mapObjectToView(this, this, findViewById(R.id.automap_container));
+        ViewObjectMapper.mapObjectToView(this);
     }
 }
 ```
@@ -198,6 +197,12 @@ public class PrefixAutoMapExample extends AppCompatActivity {
 ```
 
 ##Change Log
+
+###0.1.0
+- Added in helper methods to map directly to fragment or activity.
+- Removed the requirement to pass in the main view.
+- Added in support for fragments.
+- Added in additional test cases for override methods
 
 ###0.0.4
 - Made ViewIdPrefix annotation available at runtime and limited to fields
