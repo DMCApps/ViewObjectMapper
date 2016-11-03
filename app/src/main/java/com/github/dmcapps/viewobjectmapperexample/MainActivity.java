@@ -34,7 +34,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         setContentView(R.layout.activity_main);
 
         final ViewGroup viewGroup = (ViewGroup) ((ViewGroup) findViewById(android.R.id.content)).getChildAt(0);
-        ViewObjectMapper.mapObjectToView(this, this, viewGroup);
+
+        new ViewObjectMapper.Builder(this)
+                .setObjectToMap(this)
+                .setViewToMap(viewGroup)
+                .setListOnItemClickListener(this)
+                .build()
+                .map();
 
         ArrayList<String> items = new ArrayList<>();
         items.add("Basic Mapping Example");
@@ -47,7 +53,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         items.add("Basic Fragment Map Example");
 
         mList.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, items));
-        mList.setOnItemClickListener(this);
 
     }
 

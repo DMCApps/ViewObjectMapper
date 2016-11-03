@@ -51,7 +51,7 @@ public class BasicAutoMapExample extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_basic_auto_map_example);
 
-        ViewObjectMapper.mapObjectToView(this);
+        new ViewObjectMapper.Builder(this).build().map();
     }
 }
 ```
@@ -142,8 +142,8 @@ public class PrefixAutoMapExample extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prefix_auto_map_example);
-        
-        ViewObjectMapper.mapObjectToView(this);
+
+        new ViewObjectMapper.Builder(this).build().map();
     }
 }
 ```
@@ -197,6 +197,12 @@ public class PrefixAutoMapExample extends AppCompatActivity {
 ```
 
 ##Change Log
+
+###0.2.0
+- Updated to use a builder pattern
+- Added in ability to add an OnItemClickListener to ListView Views
+- Added in ability to add an OnClickListener to Button Views
+- Added in ability to add a TextWatcher to EditText Views
 
 ###0.1.0
 - Added in helper methods to map directly to fragment or activity.

@@ -8,8 +8,10 @@ import java.lang.reflect.Field;
 /**
  * Created by DCarmo on 16-08-17.
  */
-public class ResourceUtil {
-    private static final String TAG = ResourceUtil.class.getSimpleName();
+public final class ResourceUtils {
+    private static final String TAG = ResourceUtils.class.getSimpleName();
+
+    private ResourceUtils() {}
 
     public static int getResId(Context context, String strResId, String defType) {
         try {

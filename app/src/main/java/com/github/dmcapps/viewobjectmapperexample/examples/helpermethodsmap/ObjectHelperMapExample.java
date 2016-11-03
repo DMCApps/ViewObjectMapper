@@ -20,7 +20,9 @@ public class ObjectHelperMapExample extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_object_helper_map_example);
 
-        ViewObjectMapper.mapObjectToView(this, mViewHolder);
+        new ViewObjectMapper.Builder(this)
+                .setObjectToMap(mViewHolder)
+                .build().map();
 
         if (mViewHolder.mTextView == null
                 || mViewHolder.mEditText == null

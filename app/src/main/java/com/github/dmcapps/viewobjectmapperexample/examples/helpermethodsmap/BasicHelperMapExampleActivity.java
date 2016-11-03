@@ -28,7 +28,8 @@ public class BasicHelperMapExampleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_basic_helper_map_example);
 
-        ViewObjectMapper.mapObjectToView(this);
+        new ViewObjectMapper.Builder(this)
+                .build().map();
 
         if (mTextView == null
                 || mEditText == null

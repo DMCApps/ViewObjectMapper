@@ -19,7 +19,11 @@ public class ObjectMappingExample extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_object_mapping_example);
 
-        ViewObjectMapper.mapObjectToView(this, mViewHolder, findViewById(R.id.automap_container));
+        new ViewObjectMapper.Builder(this)
+                .setObjectToMap(mViewHolder)
+                .setViewToMap(findViewById(R.id.automap_container))
+                .build()
+                .map();
 
         if (mViewHolder.mTextView == null
                 || mViewHolder.mEditText == null

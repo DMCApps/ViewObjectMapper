@@ -47,7 +47,8 @@ public class BasicMappingFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ViewObjectMapper.mapObjectToView(this);
+        new ViewObjectMapper.Builder(this)
+                .build().map();
 
         if (mTextView == null
                 || mEditText == null

@@ -29,7 +29,11 @@ public class BasicAutoMapExample extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_basic_auto_map_example);
 
-        ViewObjectMapper.mapObjectToView(this, this, findViewById(R.id.automap_container));
+        new ViewObjectMapper.Builder(this)
+                .setObjectToMap(this)
+                .setViewToMap(findViewById(R.id.automap_container))
+                .build()
+                .map();
 
         if (mTextView == null
                 || mEditText == null
