@@ -198,6 +198,9 @@ public class PrefixAutoMapExample extends AppCompatActivity {
 
 ##Change Log
 
+###0.2.1
+- Updated builder constructor to take a View instead of a ViewGroup
+
 ###0.2.0
 - Updated to use a builder pattern
 - Added in ability to add an OnItemClickListener to ListView Views

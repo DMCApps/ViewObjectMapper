@@ -13,7 +13,7 @@ ext {
     siteUrl = 'https://github.com/DMCApps/ViewObjectMapper'
     gitUrl = 'https://github.com/DMCApps/ViewObjectMapper.git'
 
-    libraryVersion = '0.2.0'
+    libraryVersion = '0.2.1'
 
     developerId = 'dmcapps'
     developerName = 'Daniel Carmo'
@@ -32,7 +32,7 @@ android {
         minSdkVersion 11
         targetSdkVersion 24
         versionCode 1
-        versionName "0.2.0"
+        versionName "0.2.1"
     }
     buildTypes {
         release {

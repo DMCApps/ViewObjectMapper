@@ -86,10 +86,10 @@ public class ViewObjectMapper {
             this.view = getAndroidContentViewGroup(activity);
         }
 
-        public Builder(Context context, Object object, ViewGroup viewGroup) {
+        public Builder(Context context, Object object, View view) {
             this(context);
             this.object = object;
-            this.view = viewGroup;
+            this.view = view;
         }
 
         private Builder(Context context) {
