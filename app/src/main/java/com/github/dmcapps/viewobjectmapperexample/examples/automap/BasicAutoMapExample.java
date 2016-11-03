@@ -2,7 +2,11 @@ package com.github.dmcapps.viewobjectmapperexample.examples.automap;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -15,7 +19,7 @@ import java.util.Date;
 
 // TODO: Runtime check layout for mappings
 // TODO: Add prefix to annotation to have a custom prefix on all values
-public class BasicAutoMapExample extends AppCompatActivity {
+public class BasicAutoMapExample extends AppCompatActivity implements View.OnClickListener, TextWatcher {
     private static final String TAG = BasicAutoMapExample.class.getSimpleName();
 
     private TextView mTextView;
@@ -23,6 +27,7 @@ public class BasicAutoMapExample extends AppCompatActivity {
     private RadioGroup mRadioGroup;
     private RadioButton mRadioButton1;
     private RadioButton mRadioButton2;
+    private Button mButtonClickable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +37,8 @@ public class BasicAutoMapExample extends AppCompatActivity {
         new ViewObjectMapper.Builder(this)
                 .setObjectToMap(this)
                 .setViewToMap(findViewById(R.id.automap_container))
+                .setButtonOnClickListener(this)
+                .setEditTextTextWatcher(this)
                 .build()
                 .map();
 
@@ -42,5 +49,25 @@ public class BasicAutoMapExample extends AppCompatActivity {
                 || mRadioButton2 == null) {
             throw new RuntimeException(TAG + ": Failed to map object");
         }
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        Log.i(TAG, "EditText.beforeTextChanged fired");
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+        Log.i(TAG, "EditText.onTextChanged fired");
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+        Log.i(TAG, "EditText.afterTextChanged fired");
+    }
+
+    @Override
+    public void onClick(View v) {
+        Log.i(TAG, "Button.onClick!");
     }
 }
