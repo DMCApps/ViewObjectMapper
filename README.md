@@ -9,12 +9,12 @@ Daniel Carmo, dcarmo@alumni.uoguelph.ca
 In your app build.gradle file add the following to your dependencies. Project only available on jCenter repository.
 
 ```groovy
-compile 'com.github.dmcapps:view-object-mapper:0.1.0'
+compile 'com.github.dmcapps:view-object-mapper:0.2.1'
 ```
 
 ##Current Version
 
-0.1.0
+0.2.1
 
 ##Introduction
 
