@@ -1,5 +1,9 @@
 #View Object Mapper
 
+## DEPRECIATED
+
+Found out that there is a great library for this called [Butter Knife](http://jakewharton.github.io/butterknife/)
+
 ## Author
 
 Daniel Carmo, dcarmo@alumni.uoguelph.ca
